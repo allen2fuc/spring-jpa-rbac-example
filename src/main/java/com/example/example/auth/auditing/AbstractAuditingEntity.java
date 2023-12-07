@@ -16,12 +16,14 @@ import java.time.LocalDateTime;
 /**
  * @author fucheng on 2023/12/6
  */
+// 公共的审计字段
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter
 @Setter
 public class AbstractAuditingEntity {
 
+    // 主键ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
@@ -45,7 +47,6 @@ public class AbstractAuditingEntity {
     private LocalDateTime updatedDate;
 
     // 逻辑删除字段
-//    @Enumerated(EnumType.STRING)
     private Boolean deleted = false;
 
     @PreRemove
