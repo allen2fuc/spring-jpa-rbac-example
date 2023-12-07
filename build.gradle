@@ -1,0 +1,46 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.0'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+dependencies {
+	// 导入Security依赖
+	implementation('org.springframework.boot:spring-boot-starter-security')
+	// 加入JPA依赖
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	// 加入h2数据库
+	compileOnly('com.h2database:h2')
+	// 导入lombok依赖
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	// 增加hutool依赖工具包的支持
+	implementation 'cn.hutool:hutool-all:latest.release'
+	// 增加验证器
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	// 加入web依赖
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	// 测试依赖
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
